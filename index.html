@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () { try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'workshop' : 'observatory';
+    var d = document.documentElement;
+    d.setAttribute('data-theme', t);
+    d.classList.add('js');
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  } catch (e) {} })();
+</script>
+<title>Andrew — Engineering Portfolio</title>
+<meta name="description" content="Andrew — student engineer building physics-grounded simulations and interfaces at the seam of electrical, mechanical, and software systems.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="starsCanvas" class="bg-stars" aria-hidden="true"></canvas>
+<div class="bg-nebula" aria-hidden="true">
+  <div class="nebula nebula--a"></div>
+  <div class="nebula nebula--b"></div>
+  <div class="nebula nebula--c"></div>
+</div>
+<canvas id="parchmentCanvas" class="bg-parchment" aria-hidden="true"></canvas>
+
+<div class="grain"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ========================= NAV ========================= -->
+<header class="nav" id="nav">
+  <a href="#intro" class="nav__mark" aria-label="Andrew — home">
+    <svg viewBox="0 0 32 32" class="nav__mark-svg" aria-hidden="true">
+      <path d="M2 20 L14 20 L20 8 L20 27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="24" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span>Andrew</span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+      <a href="#intro"><span class="nav__num">01</span>Introduction</a>
+      <a href="#process"><span class="nav__num">02</span>Process</a>
+      <a href="#work"><span class="nav__num">03</span>Work</a>
+      <a href="#toolkit"><span class="nav__num">04</span>Toolkit</a>
+      <a href="#journey"><span class="nav__num">05</span>Journey</a>
+      <a href="#contact"><span class="nav__num">06</span>Contact</a>
+  </nav>
+
+  <a href="#contact" class="btn btn--ghost nav__cta">
+    <span>Start a thread</span>
+  </a>
+
+  <button class="nav__theme" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to workshop (day) mode">
+    <svg class="icon-observatory" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg>
+    <svg class="icon-workshop" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#intro">Introduction</a>
+  <a href="#process">Process</a>
+  <a href="#work">Work</a>
+  <a href="#toolkit">Toolkit</a>
+  <a href="#journey">Journey</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ======================== PAGE 01 — INTRO ======================== -->
+<div class="page" data-page="intro" id="page-intro">
+  <section class="hero" id="intro">
+    <div class="hero__stage" id="heroStage">
+      <div class="hero__art hero__art--under" id="artUnder"></div>
+      <div class="hero__art hero__art--over" id="artOver"></div>
+      <div class="hero__horizon"></div>
+      <div class="hero__vignette"></div>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow" data-reveal>001 — INTRODUCTION</p>
+      <h1 class="hero__title">
+        <span class="line" data-reveal>Every ordinary thing</span>
+        <span class="line" data-reveal>hides a <em>mechanism.</em></span>
+      </h1>
+      <p class="hero__sub" data-reveal>
+        I'm Andrew — a student engineer who reaches past the surface of
+        everyday systems to find the gears, charges, and feedback loops
+        underneath, then builds interfaces that make them legible.
+      </p>
+      <div class="hero__actions" data-reveal>
+        <a href="#work" class="btn btn--solid">
+          <span>See the work</span>
+          <svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#process" class="btn btn--text">Why I build this way</a>
+      </div>
+    </div>
+    <div class="hero__scrollcue" aria-hidden="true">
+      <span>Pull back the sky</span>
+      <div class="hero__scrollcue-line"><i></i></div>
+    </div>
+  </section>
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <a href="#process" class="site-footer__top">Next →</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE 02 — PROCESS ======================== -->
+<div class="page" data-page="process" id="page-process">
+  <section class="manifesto" id="process">
+    <div class="wrap manifesto__grid">
+      <div class="manifesto__side">
+        <p class="eyebrow" data-reveal>002 — WHY I BUILD</p>
+        <h2 class="h2" data-reveal>I see through<br>everything you've ever touched.</h2>
+      </div>
+      <div class="manifesto__body">
+        <p data-reveal>
+          Every smooth surface hides a mechanism. Every dashboard, every
+          motor, every charged sphere — they all look seamless until you
+          learn to see the stitching. Most engineers never bother to look.
+          I was born looking.
+        </p>
+        <p data-reveal>
+          I work across two disciplines most people keep in separate
+          buildings. One is physics — electrostatics, feedback control,
+          the unforgiving math of systems that spin, fall, accumulate
+          charge, and discharge. The other is interface — state
+          architecture, motion design, the brutal honesty of a control
+          that responds the instant you call it. My projects live at the
+          seam: real physics, wrapped in software that never lies about
+          what's happening underneath. This isn't a portfolio. It's a
+          diagnostic report on what I'm capable of.
+        </p>
+        <div class="manifesto__orbit" data-reveal aria-hidden="true">
+          <svg viewBox="0 0 400 240" class="orbit-svg">
+            <ellipse cx="200" cy="120" rx="170" ry="34" class="orbit-ring orbit-ring--a"/>
+            <ellipse cx="200" cy="120" rx="120" ry="70" class="orbit-ring orbit-ring--b"/>
+            <ellipse cx="200" cy="120" rx="70" ry="102" class="orbit-ring orbit-ring--c"/>
+            <circle cx="200" cy="120" r="7" class="orbit-core"/>
+            <circle r="4" class="orbit-body orbit-body--a"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#pathA"/></animateMotion></circle>
+            <circle r="3.4" class="orbit-body orbit-body--b"><animateMotion dur="11s" repeatCount="indefinite" rotate="auto"><mpath href="#pathB"/></animateMotion></circle>
+            <circle r="3" class="orbit-body orbit-body--c"><animateMotion dur="5s" repeatCount="indefinite" rotate="auto"><mpath href="#pathC"/></animateMotion></circle>
+            <path id="pathA" d="M30,120 A170,34 0 1,0 370,120 A170,34 0 1,0 30,120" fill="none"/>
+            <path id="pathB" d="M80,120 A120,70 0 1,0 320,120 A120,70 0 1,0 80,120" fill="none"/>
+            <path id="pathC" d="M130,120 A70,102 0 1,0 270,120 A70,102 0 1,0 130,120" fill="none"/>
+          </svg>
+        </div>
+        <div class="manifesto__nav" data-reveal>
+          <a href="#work" class="btn btn--solid">
+            <span>See the work</span>
+            <svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <div class="page-footer__nav">
+        <a href="#intro" class="site-footer__top">← Previous</a>
+        <a href="#work" class="site-footer__top">Next →</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE 03 — WORK ======================== -->
+<div class="page" data-page="work" id="page-work">
+  <section class="hero hero--sub" id="top-work">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>003 — SELECTED WORK</p>
+      <h1 class="hero__title" data-reveal>
+        <span class="line">Builds that take the</span>
+        <span class="line">invisible and make it <em>obey.</em></span>
+      </h1>
+      <p class="hero__sub" data-reveal>
+        Four machines. One law: <span class="lux lux--hl">if it can't be seen,
+        it hasn't been understood yet</span>. Each one bent a discipline nobody
+        thought a browser tab could touch.
+      </p>
+    </div>
+  </section>
+
+  <section class="projects" id="work-grid">
+    <div class="wrap projects__grid">
+
+      <a class="pcard" href="#project-kelvin" data-reveal data-motif="energy" aria-label="The Kelvin Water Dropper — open case study">
+        <div class="pcard__corner" aria-hidden="true"></div>
+        <div class="pcard__visual"><svg class="pcard__preview" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Preview of the Kelvin Water Dropper simulation">
+          <rect width="480" height="300" fill="var(--ink-3)"/>
+          <rect x="0" y="0" width="480" height="32" fill="rgba(239,231,210,0.05)"/>
+          <circle class="preview-dot" cx="18" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--b" cx="34" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--c" cx="50" cy="16" r="4.5"/>
+          <rect x="74" y="9" width="386" height="14" rx="7" fill="rgba(239,231,210,0.07)"/>
+          <text class="preview-label" x="22" y="58">KELVIN WATER DROPPER</text>
+          <g stroke="var(--parchment-dim)" stroke-width="2" fill="none" stroke-linecap="round">
+            <rect x="120" y="80" width="46" height="22" rx="3" fill="var(--ink-2)"/>
+            <rect x="314" y="80" width="46" height="22" rx="3" fill="var(--ink-2)"/>
+            <path d="M143,102 L143,126"/><path d="M337,102 L337,126"/>
+            <path d="M135,126 h16 l-5,10 h-6 z"/><path d="M329,126 h16 l-5,10 h-6 z"/>
+            <ellipse cx="143" cy="158" rx="18" ry="7" stroke="var(--spark)"/>
+            <ellipse cx="337" cy="158" rx="18" ry="7" stroke="var(--spark)"/>
+            <path d="M125,158 C100,158 100,198 116,198 L200,198"/>
+            <path d="M355,158 C380,158 380,198 364,198 L280,198"/>
+            <path d="M116,212 h50 v46 a22,14 0 0 0 44,0 v-46"/>
+            <path d="M280,212 h50 v46 a22,14 0 0 1 -44,0 v-46"/>
+          </g>
+          <circle cx="200" cy="212" r="5" fill="var(--spark)"/>
+          <circle cx="280" cy="212" r="5" fill="var(--brass)"/>
+          <path d="M200,212 L280,212" stroke="var(--spark)" stroke-width="1.5"/>
+          <path d="M232,150 l-8,18 l10,2 l-8,18" fill="none" stroke="var(--spark)" stroke-width="2"/>
+          <text class="preview-label" x="22" y="284">CHARGE 8,400 V</text>
+        </svg></div>
+        <div class="pcard__body">
+          <span class="uniq">One of one — ever built</span>
+          <h3>The Kelvin Water Dropper</h3>
+          <p>Water falls. Physics wakes up. The <span class="lux lux--big">only</span> in-browser resurrection of Lord Kelvin's <span class="lux lux--brass">1867 hydro-electrostatic engine</span> anywhere on Earth — a <span class="lux lux--spark">self-amplifying induction lattice</span> that builds thousands of volts out of two dripping tanks and refuses to fake a single spark.</p>
+          <div class="tag-row tag-row--sm">
+            <span class="tag">Electrostatics</span><span class="tag">Canvas Physics</span><span class="tag">State Machine</span>
+          </div>
+          <a class="pcard__live" href="https://kelvin-dropper-r7dl2744x-andrewism.vercel.app/" target="_blank" rel="noopener">Live build <span class="arr">↗</span></a>
+        </div>
+      </a>
+
+      <a class="pcard" href="#project-energy" data-reveal data-motif="energy" aria-label="Home Energy Resilience Planner — open case study">
+        <div class="pcard__corner" aria-hidden="true"></div>
+        <div class="pcard__visual"><svg class="pcard__preview" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Preview of the Home Energy Resilience Planner">
+          <rect width="480" height="300" fill="var(--ink-3)"/>
+          <rect x="0" y="0" width="480" height="32" fill="rgba(239,231,210,0.05)"/>
+          <circle class="preview-dot" cx="18" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--b" cx="34" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--c" cx="50" cy="16" r="4.5"/>
+          <rect x="74" y="9" width="386" height="14" rx="7" fill="rgba(239,231,210,0.07)"/>
+          <text class="preview-label" x="22" y="60">HOME ENERGY RESILIENCE</text>
+          <text x="22" y="110" font-family="var(--font-display)" font-size="46" font-weight="600" fill="var(--spark)">92%</text>
+          <text class="preview-label" x="122" y="100">RESILIENCE</text>
+          <text class="preview-label" x="122" y="118">through outage</text>
+          <g transform="translate(422,82)">
+            <circle r="15" fill="none" stroke="var(--brass)" stroke-width="2"/>
+            <g stroke="var(--brass)" stroke-width="2" stroke-linecap="round">
+              <line x1="0" y1="-22" x2="0" y2="-15"/><line x1="0" y1="22" x2="0" y2="15"/>
+              <line x1="-22" y1="0" x2="-15" y2="0"/><line x1="22" y1="0" x2="15" y2="0"/>
+              <line x1="-15" y1="-15" x2="-11" y2="-11"/><line x1="15" y1="15" x2="11" y2="11"/>
+              <line x1="15" y1="-15" x2="11" y2="-11"/><line x1="-15" y1="15" x2="-11" y2="11"/>
+            </g>
+          </g>
+          <rect x="24" y="200" width="26" height="60" rx="4" fill="var(--spark)"/>
+          <rect x="60" y="170" width="26" height="90" rx="4" fill="var(--brass)"/>
+          <rect x="96" y="222" width="26" height="38" rx="4" fill="var(--spark)"/>
+          <rect x="132" y="150" width="26" height="110" rx="4" fill="var(--brass)"/>
+          <rect x="168" y="190" width="26" height="70" rx="4" fill="var(--spark)"/>
+          <path d="M220,250 C260,250 260,180 300,180 C340,180 340,250 380,250 C420,250 420,200 456,200" fill="none" stroke="var(--spark)" stroke-width="2.5"/>
+          <circle cx="300" cy="180" r="4" fill="var(--spark)"/>
+          <circle cx="456" cy="200" r="4" fill="var(--brass)"/>
+        </svg></div>
+        <div class="pcard__body">
+          <h3>Home Energy Resilience Planner</h3>
+          <p>The grid can go quiet. This doesn't. A <span class="lux lux--big">real-time blackout oracle</span> that runs your household's entire draw against <span class="lux lux--spark">solar, battery, and worst-case outage math</span> — and calls the exact minute the lights would give out, before they ever do.</p>
+          <div class="tag-row tag-row--sm">
+            <span class="tag">React</span><span class="tag">Dashboard</span><span class="tag">Simulation</span>
+          </div>
+          <a class="pcard__live" href="https://egn1-3dxewzijb-andrewism.vercel.app/" target="_blank" rel="noopener">Live build <span class="arr">↗</span></a>
+        </div>
+      </a>
+
+      <a class="pcard" href="#project-budget" data-reveal data-motif="budget" aria-label="Budget Flow — open case study">
+        <div class="pcard__corner" aria-hidden="true"></div>
+        <div class="pcard__visual"><svg class="pcard__preview" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Preview of Budget Flow">
+          <rect width="480" height="300" fill="var(--ink-3)"/>
+          <rect x="0" y="0" width="480" height="32" fill="rgba(239,231,210,0.05)"/>
+          <circle class="preview-dot" cx="18" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--b" cx="34" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--c" cx="50" cy="16" r="4.5"/>
+          <rect x="74" y="9" width="386" height="14" rx="7" fill="rgba(239,231,210,0.07)"/>
+          <text class="preview-label" x="22" y="60">BUDGET FLOW</text>
+          <text x="22" y="110" font-family="var(--font-display)" font-size="44" font-weight="600" fill="var(--spark)">$4.2k</text>
+          <text class="preview-label" x="128" y="100">MONTHLY</text>
+          <text class="preview-label" x="128" y="118">net flow</text>
+          <path d="M24,176 C80,176 80,146 140,146 C200,146 200,196 260,196 C320,196 320,156 380,156 C420,156 440,170 456,170" fill="none" stroke="var(--spark)" stroke-width="2.5"/>
+          <path d="M24,206 C80,206 80,226 140,226 C200,226 200,196 260,196 C320,196 320,220 380,220 C420,220 440,210 456,210" fill="none" stroke="var(--brass)" stroke-width="1.6" opacity="0.7"/>
+          <g font-family="var(--font-mono)" font-size="11" fill="var(--parchment-dim)">
+            <rect x="24" y="240" width="60" height="22" rx="11" fill="rgba(239,231,210,0.07)"/><text x="34" y="255">RENT</text>
+            <rect x="92" y="240" width="78" height="22" rx="11" fill="rgba(239,231,210,0.07)"/><text x="102" y="255">GROCERIES</text>
+            <rect x="178" y="240" width="62" height="22" rx="11" fill="rgba(239,231,210,0.07)"/><text x="188" y="255">SAVINGS</text>
+          </g>
+        </svg></div>
+        <div class="pcard__body">
+          <h3>Budget Flow</h3>
+          <p>Money has physics too, it just needed someone to write the equations. A <span class="lux lux--brass">deterministic money engine</span> that takes raw, chaotic transactions and forces them into a <span class="lux lux--spark">single feedback-controlled current</span> — the same core logic later drafted to run the Energy Planner.</p>
+          <div class="tag-row tag-row--sm">
+            <span class="tag">React</span><span class="tag">Data Viz</span><span class="tag">State</span>
+          </div>
+          <a class="pcard__live" href="https://budget-flow-36n8pueye-andrewism.vercel.app/" target="_blank" rel="noopener">Live build <span class="arr">↗</span></a>
+        </div>
+      </a>
+
+      <article class="pcard" data-reveal data-motif="clinic">
+        <div class="pcard__corner" aria-hidden="true"></div>
+        <div class="pcard__visual"><svg class="pcard__preview" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Preview of the veterinary clinic site">
+          <rect width="480" height="300" fill="var(--ink-3)"/>
+          <rect x="0" y="0" width="480" height="32" fill="rgba(239,231,210,0.05)"/>
+          <circle class="preview-dot" cx="18" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--b" cx="34" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--c" cx="50" cy="16" r="4.5"/>
+          <rect x="74" y="9" width="386" height="14" rx="7" fill="rgba(239,231,210,0.07)"/>
+          <text class="preview-label" x="22" y="60">VETERINARY CLINIC</text>
+          <g transform="translate(240,168)">
+            <rect x="-14" y="-44" width="28" height="88" rx="8" fill="none" stroke="var(--spark)" stroke-width="3"/>
+            <rect x="-44" y="-14" width="88" height="28" rx="8" fill="none" stroke="var(--spark)" stroke-width="3"/>
+          </g>
+          <path d="M40,200 L120,200 L150,160 L190,230 L220,200 L300,200" fill="none" stroke="var(--brass)" stroke-width="2.5"/>
+          <text class="preview-label" x="22" y="284">Book an appointment</text>
+        </svg></div>
+        <div class="pcard__body">
+          <h3>Veterinary Clinic Site</h3>
+          <p>No lab, no lattice — just a real client, a real deadline, and <span class="lux lux--hl">zero room to be wrong</span>. An appointment-first site built calm on the surface and load-bearing underneath, because a broken booking form doesn't get a second chance in production.</p>
+          <div class="tag-row tag-row--sm">
+            <span class="tag">Web Design</span><span class="tag">Client Work</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <div class="page-footer__nav">
+        <a href="#process" class="site-footer__top">← Previous</a>
+        <a href="#toolkit" class="site-footer__top">Next →</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE 04 — TOOLKIT ======================== -->
+<div class="page" data-page="toolkit" id="page-toolkit">
+  <section class="toolkit" id="toolkit">
+    <div class="wrap" style="padding-top:clamp(100px,14vh,160px)">
+      <p class="eyebrow" data-reveal>004 — TOOLKIT</p>
+      <h2 class="h2" data-reveal>The operating system<br>behind every <em>build</em></h2>
+      <p data-reveal style="max-width:620px;margin-top:6px">
+        Each discipline below was <span class="lux lux--big">calibrated until
+        it became reflex</span> — then discarded from conscious thought.
+        What remains is the work, executed at the speed of instinct.
+      </p>
+    </div>
+    <div class="wrap toolkit__groups">
+      <div class="toolkit__group" data-reveal>
+        <div class="toolkit__group-glow toolkit__group-glow--spark" aria-hidden="true"></div>
+        <h3 class="mono toolkit__group-title">
+          <span class="toolkit__group-icon">⚡</span>
+          Electro-Mechanical Systems
+        </h3>
+        <p class="toolkit__group-desc">
+          The <span class="lux lux--hl">invisible architecture</span> of reality —
+          I decode the language of charges, forces, and feedback loops
+          that govern everything from capacitor banks to closed-loop control systems.
+        </p>
+        <div class="chip-row">
+          <span class="chip chip--spark">Electrostatic Field Theory</span>
+          <span class="chip chip--spark">Closed-Loop Feedback</span>
+          <span class="chip chip--spark">Numerical Integration</span>
+          <span class="chip chip--spark">SPICE Circuit Analysis</span>
+        </div>
+        <div class="toolkit__group-stat">
+          <span class="toolkit__group-stat-num">4,200</span>
+          <span class="toolkit__group-stat-label">volts from water alone</span>
+        </div>
+      </div>
+      <div class="toolkit__group" data-reveal>
+        <div class="toolkit__group-glow toolkit__group-glow--brass" aria-hidden="true"></div>
+        <h3 class="mono toolkit__group-title">
+          <span class="toolkit__group-icon">◈</span>
+          Interface Engineering
+        </h3>
+        <p class="toolkit__group-desc">
+          The <span class="lux lux--hl">thin membrane</span> between human intent and
+          machine response — every pixel is a contract, every animation
+          a binding promise of temporal continuity.
+        </p>
+        <div class="chip-row">
+          <span class="chip chip--brass">Component Architecture</span>
+          <span class="chip chip--brass">GPU Compositing</span>
+          <span class="chip chip--brass">Kinetic Motion Design</span>
+          <span class="chip chip--brass">Systematic Design Language</span>
+        </div>
+        <div class="toolkit__group-stat">
+          <span class="toolkit__group-stat-num">60fps</span>
+          <span class="toolkit__group-stat-label">zero-compromise rendering</span>
+        </div>
+      </div>
+      <div class="toolkit__group" data-reveal>
+        <div class="toolkit__group-glow toolkit__group-glow--parchment" aria-hidden="true"></div>
+        <h3 class="mono toolkit__group-title">
+          <span class="toolkit__group-icon">⚙</span>
+          Production Systems
+        </h3>
+        <p class="toolkit__group-desc">
+          The <span class="lux lux--hl">assembly line</span> that turns chaos into
+          deployable artifacts — autonomous agent orchestration, temporal
+          state management, and the discipline of shipping without compromise.
+        </p>
+        <div class="chip-row">
+          <span class="chip chip--parchment">AI-Augmented Synthesis</span>
+          <span class="chip chip--parchment">Agent Orchestration</span>
+          <span class="chip chip--parchment">Parametric Instrumentation</span>
+          <span class="chip chip--parchment">Distributed Version Control</span>
+        </div>
+        <div class="toolkit__group-stat">
+          <span class="toolkit__group-stat-num">∞</span>
+          <span class="toolkit__group-stat-label">iterations until perfect</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <div class="page-footer__nav">
+        <a href="#work" class="site-footer__top">← Previous</a>
+        <a href="#journey" class="site-footer__top">Next →</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE 05 — JOURNEY ======================== -->
+<div class="page" data-page="journey" id="page-journey">
+  <section class="hero hero--sub" id="top-journey">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>005 — JOURNEY</p>
+      <h1 class="hero__title" data-reveal>
+        <span class="line">I took things apart</span>
+        <span class="line">until only <em>one habit</em> was left.</span>
+      </h1>
+      <p class="hero__sub" data-reveal>
+        Five years. Dozens of builds thrown back. <span class="lux lux--hl">One
+        instinct wouldn't die</span>: crack every surface open until the gears
+        underneath show themselves.
+      </p>
+    </div>
+  </section>
+
+  <section class="journey" id="journey-list">
+    <div class="wrap journey__list">
+      <div class="jrow" data-reveal>
+        <span class="jrow__num mono">01</span>
+        <div class="jrow__body">
+          <h4>Somebody Else's Problems</h4>
+          <p>A booking system for a vet clinic. A storefront for a clothing brand. Appointment slots, patient records, payment rails — none of it glamorous, all of it unforgiving. <span class="lux lux--hl">No tutorial ever taught what a 2am client email teaches in one sentence.</span> This is where the training wheels came off.</p>
+        </div>
+      </div>
+      <div class="jrow" data-reveal>
+        <span class="jrow__num mono">02</span>
+        <div class="jrow__body">
+          <h4>The Architecture Click</h4>
+          <p>Something snapped into focus somewhere around line 3,000. <span class="lux lux--spark">One model, one source of truth</span>, every chart and forecast fed from the same beating core — no duplicated state, no quiet lies between components. A discipline learned on spreadsheets that would, without asking permission, rebuild itself inside a physics engine.</p>
+        </div>
+      </div>
+      <div class="jrow" data-reveal>
+        <span class="jrow__num mono">03</span>
+        <div class="jrow__body">
+          <h4>The Rejection</h4>
+          <p>Every CS portfolio online started looking like the same portfolio. <span class="lux lux--hl">Same to-do list. Same weather widget. Same dashboard, wearing a different font.</span> Deleted the draft. Went looking for a problem ugly enough, old enough, and stubborn enough to actually fight back.</p>
+        </div>
+      </div>
+      <div class="jrow" data-reveal>
+        <span class="jrow__num mono">04</span>
+        <div class="jrow__body">
+          <h4>The Kelvin Build</h4>
+          <p><span class="lux lux--big">Eight months</span> arguing with 19th-century physics until it agreed to run in a browser tab. First-principles electrostatics, a charge-transfer model built from nothing, particles rendered frame by frame until the spark-gap broke exactly where it should. <span class="lux lux--brass">Nobody else has shipped this. Not once, not anywhere.</span></p>
+        </div>
+      </div>
+      <div class="jrow jrow--next" data-reveal>
+        <span class="jrow__num mono">05</span>
+        <div class="jrow__body">
+          <h4>What's Next</h4>
+          <p><span class="lux lux--hl">Electrical engineering.</span> Code was the rehearsal — <span class="lux lux--spark">copper, silicon, and current</span> are the real stage. Everything here was practice for a room with a soldering iron in it. This portfolio is the door. The lab is what's on the other side.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="journey-cta">
+    <div class="wrap contact__grid" style="border-top:1px solid var(--line);padding-top:clamp(40px,5vw,60px)">
+      <div>
+        <h2 class="h2 contact__title" data-reveal>Let's find the seam<br>in something together.</h2>
+        <a href="#contact" class="btn btn--solid" data-reveal style="margin-top:8px">
+          <span>Start a thread</span>
+          <svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="contact__side" data-reveal>
+        <a href="mailto:hello@andrew.dev" class="contact__email">
+          <span>hello@andrew.dev</span>
+          <svg viewBox="0 0 16 16" width="18" height="18"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="contact__links">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <div class="page-footer__nav">
+        <a href="#toolkit" class="site-footer__top">← Previous</a>
+        <a href="#contact" class="site-footer__top">Next →</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE 06 — CONTACT ======================== -->
+<div class="page" data-page="contact" id="page-contact">
+  <section class="hero hero--sub" id="top-contact">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>006 — GET IN TOUCH</p>
+      <h1 class="hero__title" data-reveal>
+        <span class="line">Let's find the seam</span>
+        <span class="line">in something <em>together.</em></span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="contact contact--page" id="contact-form">
+    <div class="wrap contact__grid">
+      <div>
+        <h2 class="h2 contact__title" data-reveal>Start a thread.</h2>
+        <p class="feature__lede" data-reveal>
+          Engineering collaborations, simulation work, or just a conversation
+          about the mechanism behind something ordinary.
+        </p>
+        <div class="contact__side" data-reveal>
+          <a href="mailto:hello@andrew.dev" class="contact__email">
+            <span>hello@andrew.dev</span>
+            <svg viewBox="0 0 16 16" width="18" height="18"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="contact__links">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Resume</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact__form" id="contactForm" data-reveal novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--solid">
+          <span>Send message</span>
+          <svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="contact__status" id="contactStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <a href="#journey" class="site-footer__top">← Previous</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE: PROJECT KELVIN ======================== -->
+<div class="page" data-page="project-kelvin" id="page-project-kelvin">
+  <nav class="breadcrumb wrap" aria-label="Breadcrumb">
+    <a href="#intro">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="#work">Work</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Kelvin Water Dropper</span>
+  </nav>
+
+  <section class="hero hero--sub" id="top-kelvin">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>FLAGSHIP BUILD</p>
+      <h1 class="hero__title" data-reveal>
+        <span class="line">The Kelvin</span>
+        <span class="line"><em>Water Dropper</em></span>
+      </h1>
+      <p class="hero__sub" data-reveal>
+        The <span class="lux lux--big">only</span> known in-browser reconstruction
+        of Lord Kelvin's <span class="lux lux--brass">1867 hydro-electrostatic
+        engine</span> — thousands of volts conjured from falling water and a
+        <span class="lux lux--spark">self-amplifying induction lattice</span> that
+        runs the real charge-transfer math, live.
+      </p>
+      <div style="margin-top:26px; display:flex; gap:14px; flex-wrap:wrap;">
+        <span class="uniq">One of one — ever built</span>
+        <a class="live-launch" href="https://kelvin-dropper-r7dl2744x-andrewism.vercel.app/" target="_blank" rel="noopener" data-reveal>
+          Open the live build <span class="arr">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature" id="sim-kelvin">
+    <div class="wrap feature__layout">
+      <div class="kdrop" id="kdrop-detail" data-reveal>
+        <div class="kdrop__frame">
+          <svg viewBox="0 0 480 360" class="kdrop__svg" id="kdropSvg-detail">
+            <rect x="70" y="18" width="70" height="34" rx="3" class="kd-tank"/>
+            <rect x="340" y="18" width="70" height="34" rx="3" class="kd-tank"/>
+            <path d="M105,52 L105,90" class="kd-pipe"/>
+            <path d="M375,52 L375,90" class="kd-pipe"/>
+            <path d="M95,90 h20 l-6,14 h-8 z" class="kd-nozzle"/>
+            <path d="M365,90 h20 l-6,14 h-8 z" class="kd-nozzle"/>
+            <circle cx="105" cy="112" r="3.2" class="kd-drop kd-drop--l" id="dropL1-detail"/>
+            <circle cx="105" cy="112" r="3.2" class="kd-drop kd-drop--l" id="dropL2-detail"/>
+            <circle cx="375" cy="112" r="3.2" class="kd-drop kd-drop--r" id="dropR1-detail"/>
+            <circle cx="375" cy="112" r="3.2" class="kd-drop kd-drop--r" id="dropR2-detail"/>
+            <ellipse cx="105" cy="150" rx="26" ry="10" class="kd-ring kd-ring--l" id="ringL-detail"/>
+            <ellipse cx="375" cy="150" rx="26" ry="10" class="kd-ring kd-ring--r" id="ringR-detail"/>
+            <path d="M79,150 C40,150 40,210 60,210 L190,210" class="kd-wire" />
+            <path d="M401,150 C440,150 440,210 420,210 L290,210" class="kd-wire" />
+            <path d="M60,230 h70 v70 a35,20 0 0 0 70,0 v-70" class="kd-can" fill="none"/>
+            <rect x="55" y="225" width="80" height="16" rx="3" class="kd-can-lid"/>
+            <rect x="285" y="225" width="80" height="16" rx="3" class="kd-can-lid"/>
+            <path d="M290,230 h70 v70 a35,20 0 0 1 -70,0 v-70" class="kd-can" fill="none"/>
+            <g id="sparkGap-detail" class="kd-sparkgap">
+              <circle cx="190" cy="233" r="7" class="kd-ball kd-ball--l" id="ballL-detail"/>
+              <circle cx="290" cy="233" r="7" class="kd-ball kd-ball--r" id="ballR-detail"/>
+              <g id="sparkBolt-detail" class="kd-bolt"></g>
+            </g>
+            <ellipse cx="95" cy="255" rx="60" ry="55" class="kd-glow kd-glow--l" id="glowL-detail"/>
+            <ellipse cx="355" cy="255" rx="60" ry="55" class="kd-glow kd-glow--r" id="glowR-detail"/>
+          </svg>
+          <div class="kdrop__meter">
+            <div class="kdrop__meter-row">
+              <span>CHARGE</span>
+              <div class="kdrop__bar"><div class="kdrop__bar-fill" id="chargeFill-detail"></div></div>
+              <span class="mono" id="chargeReadout-detail">0%</span>
+            </div>
+          </div>
+        </div>
+        <p class="kdrop__hint">Click the tank to prime the flow — watch the feedback loop climb until it discharges.</p>
+        <button class="btn btn--solid kdrop__trigger" id="kdropTrigger-detail">
+          <span>Prime the flow</span>
+        </button>
+      </div>
+
+      <div class="feature__notes" data-reveal>
+        <ul class="specs">
+          <li><span class="mono">01</span>Two grounded rings induct opposite charge onto falling droplets as they pass — no battery, just geometry.</li>
+          <li><span class="mono">02</span>Charged drops land in cross-wired cans, reinforcing the very field that charged them next.</li>
+          <li><span class="mono">03</span>Voltage climbs exponentially until the gap between the collector balls breaks down in a spark.</li>
+          <li><span class="mono">04</span>Built with a real charge-transfer feedback model, live state visualization, and a tunable control panel.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Electrostatics</span>
+          <span class="tag">Canvas Physics</span>
+          <span class="tag">State Machine</span>
+          <span class="tag">Custom UI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto" id="how-kelvin">
+    <div class="wrap manifesto__grid">
+      <div class="manifesto__side">
+        <p class="eyebrow" data-reveal>MECHANISM</p>
+        <h2 class="h2" data-reveal>Why it shouldn't<br>work as well as it does.</h2>
+      </div>
+      <div class="manifesto__body">
+        <p data-reveal>
+          Lord Kelvin's dropper is a beautiful cheat. Two streams of water fall
+          through grounded <span class="lux lux--spark">induction rings</span>.
+          Statistical noise gives one side a fraction more charge; that charge
+          induces the <span class="lux lux--hl">opposite sign</span> onto the drops
+          falling through that side; those drops land in a can wired to the
+          other side's ring — strengthening the very imbalance that created them.
+        </p>
+        <p data-reveal>
+          The loop is <span class="lux lux--big">regenerative</span>. Charge begets
+          charge. Within seconds the potential between the collector spheres
+          reaches <span class="lux lux--stat">thousands of volts</span> and the air
+          itself gives way in a spark, resetting the system to begin again. The
+          simulation models that transfer <span class="lux lux--brass">honestly</span>
+          — no faked numbers, just the <span class="lux lux--spark">feedback math
+          running live</span>.
+        </p>
+        <div class="lexicon" data-reveal>
+          <span><b>regenerative</b> charge cascade</span>
+          <span><b>cross-wired</b> collectors</span>
+          <span><b>honest</b> physics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="project-pager wrap" aria-label="Project navigation">
+    <a class="ppager ppager--prev" href="#project-budget">
+      <span class="ppager__dir">← Previous build</span>
+      <span class="ppager__title">Budget Flow</span>
+    </a>
+    <a class="ppager ppager--next" href="#project-energy">
+      <span class="ppager__dir">Next build →</span>
+      <span class="ppager__title">Home Energy Resilience Planner</span>
+    </a>
+  </nav>
+
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <a href="#work" class="site-footer__top">Back to work</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE: PROJECT ENERGY ======================== -->
+<div class="page" data-page="project-energy" id="page-project-energy">
+  <nav class="breadcrumb wrap" aria-label="Breadcrumb">
+    <a href="#intro">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="#work">Work</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Home Energy Resilience Planner</span>
+  </nav>
+
+  <section class="hero hero--sub" id="top-energy">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>REACT · DASHBOARD · SIMULATION</p>
+      <h1 class="hero__title" data-reveal>
+        <span class="line">Home Energy</span>
+        <span class="line"><em>Resilience Planner</em></span>
+      </h1>
+      <p class="hero__sub" data-reveal>
+        A <span class="lux lux--big">real-time grid-failure oracle</span>. Set your
+        array, your bank, and your draw — it projects, to the minute, how long
+        you stay lit through a <span class="lux lux--spark">blackout cascade</span>,
+        and exactly <span class="lux lux--hl">where the shortfalls bite</span>.
+      </p>
+      <div class="detail__visual" data-reveal>
+        <div class="pcard__visual"><svg class="pcard__preview" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Preview of the Home Energy Resilience Planner">
+          <rect width="480" height="300" fill="var(--ink-3)"/>
+          <rect x="0" y="0" width="480" height="32" fill="rgba(239,231,210,0.05)"/>
+          <circle class="preview-dot" cx="18" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--b" cx="34" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--c" cx="50" cy="16" r="4.5"/>
+          <rect x="74" y="9" width="386" height="14" rx="7" fill="rgba(239,231,210,0.07)"/>
+          <text class="preview-label" x="22" y="60">HOME ENERGY RESILIENCE</text>
+          <text x="22" y="110" font-family="var(--font-display)" font-size="46" font-weight="600" fill="var(--spark)">92%</text>
+          <text class="preview-label" x="122" y="100">RESILIENCE</text>
+          <text class="preview-label" x="122" y="118">through outage</text>
+          <g transform="translate(422,82)">
+            <circle r="15" fill="none" stroke="var(--brass)" stroke-width="2"/>
+            <g stroke="var(--brass)" stroke-width="2" stroke-linecap="round">
+              <line x1="0" y1="-22" x2="0" y2="-15"/><line x1="0" y1="22" x2="0" y2="15"/>
+              <line x1="-22" y1="0" x2="-15" y2="0"/><line x1="22" y1="0" x2="15" y2="0"/>
+              <line x1="-15" y1="-15" x2="-11" y2="-11"/><line x1="15" y1="15" x2="11" y2="11"/>
+              <line x1="15" y1="-15" x2="11" y2="-11"/><line x1="-15" y1="15" x2="-11" y2="11"/>
+            </g>
+          </g>
+          <rect x="24" y="200" width="26" height="60" rx="4" fill="var(--spark)"/>
+          <rect x="60" y="170" width="26" height="90" rx="4" fill="var(--brass)"/>
+          <rect x="96" y="222" width="26" height="38" rx="4" fill="var(--spark)"/>
+          <rect x="132" y="150" width="26" height="110" rx="4" fill="var(--brass)"/>
+          <rect x="168" y="190" width="26" height="70" rx="4" fill="var(--spark)"/>
+          <path d="M220,250 C260,250 260,180 300,180 C340,180 340,250 380,250 C420,250 420,200 456,200" fill="none" stroke="var(--spark)" stroke-width="2.5"/>
+          <circle cx="300" cy="180" r="4" fill="var(--spark)"/>
+          <circle cx="456" cy="200" r="4" fill="var(--brass)"/>
+        </svg></div>
+      </div>
+      <a class="live-launch" href="https://egn1-3dxewzijb-andrewism.vercel.app/" target="_blank" rel="noopener" data-reveal style="margin-top:26px">
+        Open the live build <span class="arr">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="manifesto" id="how-energy">
+    <div class="wrap manifesto__grid">
+      <div class="manifesto__side">
+        <p class="eyebrow" data-reveal>THE MODEL</p>
+        <h2 class="h2" data-reveal>Resilience you can<br>see before it fails.</h2>
+      </div>
+      <div class="manifesto__body">
+        <p data-reveal>
+          Most homeowners discover their <span class="lux lux--brass">energy resilience</span>
+          only when the grid goes dark. This planner inverts that moment: you
+          declare your <span class="lux lux--spark">solar array</span>, your
+          <span class="lux lux--spark">battery bank</span>, and your typical draw,
+          and it forecasts — to the minute — how long you remain powered, and
+          precisely <span class="lux lux--hl">where the shortfalls land</span>.
+        </p>
+        <p data-reveal>
+          The dashboard is pure <span class="lux lux--big">inputs-to-outcomes</span>.
+          Every slider re-runs the same <span class="lux lux--stat">deterministic
+          simulation</span> the visualization reads from, so chart and figure
+          can never disagree. Same instinct as the Kelvin dropper — render the
+          invisible system legible <span class="lux lux--hl">before it bites</span>.
+        </p>
+        <div class="lexicon" data-reveal>
+          <span><b>solar + storage</b> modeling</span>
+          <span><b>outage</b> timeline prophecy</span>
+          <span><b>client-side</b> compute</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="project-pager wrap" aria-label="Project navigation">
+    <a class="ppager ppager--prev" href="#project-kelvin">
+      <span class="ppager__dir">← Previous build</span>
+      <span class="ppager__title">The Kelvin Water Dropper</span>
+    </a>
+    <a class="ppager ppager--next" href="#project-budget">
+      <span class="ppager__dir">Next build →</span>
+      <span class="ppager__title">Budget Flow</span>
+    </a>
+  </nav>
+
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <a href="#work" class="site-footer__top">Back to work</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================== PAGE: PROJECT BUDGET ======================== -->
+<div class="page" data-page="project-budget" id="page-project-budget">
+  <nav class="breadcrumb wrap" aria-label="Breadcrumb">
+    <a href="#intro">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="#work">Work</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Budget Flow</span>
+  </nav>
+
+  <section class="hero hero--sub" id="top-budget">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>REACT · DATA VIZ · STATE</p>
+      <h1 class="hero__title" data-reveal>
+        <span class="line">Budget</span>
+        <span class="line"><em>Flow</em></span>
+      </h1>
+      <p class="hero__sub" data-reveal>
+        A <span class="lux lux--stat">4,000-line</span> deterministic
+        <span class="lux lux--big">money-physics engine</span>. Raw transactions
+        become a <span class="lux lux--spark">live inputs-to-outcomes flow</span> —
+        the same source-of-truth architecture that later shaped the Energy Planner.
+      </p>
+      <div class="detail__visual" data-reveal>
+        <div class="pcard__visual"><svg class="pcard__preview" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Preview of Budget Flow">
+          <rect width="480" height="300" fill="var(--ink-3)"/>
+          <rect x="0" y="0" width="480" height="32" fill="rgba(239,231,210,0.05)"/>
+          <circle class="preview-dot" cx="18" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--b" cx="34" cy="16" r="4.5"/>
+          <circle class="preview-dot preview-dot--c" cx="50" cy="16" r="4.5"/>
+          <rect x="74" y="9" width="386" height="14" rx="7" fill="rgba(239,231,210,0.07)"/>
+          <text class="preview-label" x="22" y="60">BUDGET FLOW</text>
+          <text x="22" y="110" font-family="var(--font-display)" font-size="44" font-weight="600" fill="var(--spark)">$4.2k</text>
+          <text class="preview-label" x="128" y="100">MONTHLY</text>
+          <text class="preview-label" x="128" y="118">net flow</text>
+          <path d="M24,176 C80,176 80,146 140,146 C200,146 200,196 260,196 C320,196 320,156 380,156 C420,156 440,170 456,170" fill="none" stroke="var(--spark)" stroke-width="2.5"/>
+          <path d="M24,206 C80,206 80,226 140,226 C200,226 200,196 260,196 C320,196 320,220 380,220 C420,220 440,210 456,210" fill="none" stroke="var(--brass)" stroke-width="1.6" opacity="0.7"/>
+          <g font-family="var(--font-mono)" font-size="11" fill="var(--parchment-dim)">
+            <rect x="24" y="240" width="60" height="22" rx="11" fill="rgba(239,231,210,0.07)"/><text x="34" y="255">RENT</text>
+            <rect x="92" y="240" width="78" height="22" rx="11" fill="rgba(239,231,210,0.07)"/><text x="102" y="255">GROCERIES</text>
+            <rect x="178" y="240" width="62" height="22" rx="11" fill="rgba(239,231,210,0.07)"/><text x="188" y="255">SAVINGS</text>
+          </g>
+        </svg></div>
+      </div>
+      <a class="live-launch" href="https://budget-flow-36n8pueye-andrewism.vercel.app/" target="_blank" rel="noopener" data-reveal style="margin-top:26px">
+        Open the live build <span class="arr">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="manifesto" id="how-budget">
+    <div class="wrap manifesto__grid">
+      <div class="manifesto__side">
+        <p class="eyebrow" data-reveal>THE BUILD</p>
+        <h2 class="h2" data-reveal>Where the<br>architecture started.</h2>
+      </div>
+      <div class="manifesto__body">
+        <p data-reveal>
+          Budget Flow started as a single question — <span class="lux lux--hl">where
+          does the money actually go?</span> It grew into a
+          <span class="lux lux--stat">4,000-line</span> instrument: transaction
+          import, <span class="lux lux--brass">categorization</span>, and
+          forecasting, all driven by one <span class="lux lux--spark">state model</span>
+          every view reads from.
+        </p>
+        <p data-reveal>
+          That <span class="lux lux--big">inputs-to-dashboard</span> pattern became
+          the default. When the Home Energy Resilience Planner came later, it
+          reused the same shape — <span class="lux lux--hl">one source of truth,
+          many views, nothing duplicated</span>. This project isn't here for its
+          charts; it's the <span class="lux lux--brass">skeleton every later build
+          stands on</span>.
+        </p>
+        <div class="lexicon" data-reveal>
+          <span><b>4,000</b> lines</span>
+          <span><b>single</b> state source</span>
+          <span><b>forecasting</b> engine</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="project-pager wrap" aria-label="Project navigation">
+    <a class="ppager ppager--prev" href="#project-energy">
+      <span class="ppager__dir">← Previous build</span>
+      <span class="ppager__title">Home Energy Resilience Planner</span>
+    </a>
+    <a class="ppager ppager--next" href="#project-kelvin">
+      <span class="ppager__dir">Next build →</span>
+      <span class="ppager__title">The Kelvin Water Dropper</span>
+    </a>
+  </nav>
+
+  <footer class="site-footer page-footer">
+    <div class="wrap site-footer__row">
+      <span class="mono">© 2026 Andrew</span>
+      <a href="#work" class="site-footer__top">Back to work</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================= SCROLL DIAL ========================= -->
+<div class="dial" id="dial" role="button" tabindex="0" aria-label="Scroll progress — activate to return to top">
+  <svg viewBox="0 0 100 100" class="dial__svg" aria-hidden="true">
+    <circle class="dial__track" cx="50" cy="50" r="46"/>
+    <circle class="dial__progress" id="dialProgress" cx="50" cy="50" r="42"/>
+    <g id="dialTicks"></g>
+    <g class="dial__needle" id="dialNeedle">
+      <line x1="50" y1="50" x2="50" y2="9"/>
+    </g>
+    <circle class="dial__hub" cx="50" cy="50" r="6"/>
+  </svg>
+  <span class="dial__pct" id="dialPct" aria-hidden="true">0</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
